@@ -64,6 +64,14 @@ def transferdata():
                         },
                         {
                             "field": {
+                                "fixed_field": "MEDIA_SPACES_NAMES",
+                                "group": "SEARCH_FILES"
+                            },
+                            "match": "EQUAL_TO",
+                            "search": "Progress Ingest",
+                        },
+                        {
+                            "field": {
                                 "custom_field": "field_50",
                                 "fixed_field": "CUSTOM_field_50",
                                 "group": "SEARCH_ASSETS"
@@ -148,8 +156,8 @@ def transferdata():
                                 "fixed_field": "MEDIA_SPACES_NAMES",
                                 "group": "SEARCH_FILES"
                             },
-                            "match": "CONTAINS",
-                            "search": "Progress Einspiel"
+                            "match": "EQUAL_TO",
+                            "search": "Progress Ingest",
                         },
                         {
                             "field": {
@@ -268,4 +276,4 @@ def main():
             # dpg.add_menu_item(label='Style Editor', callback=lambda: dpg.show_style_editor())
             # dpg.add_menu_item(label='Logs', callback=help)
             with dpg.menu(label='Version', tag='version'):
-                dpg.add_text(default_value="v0.27 2023-01-11")
+                dpg.add_text(default_value="v1.00 2023-02-13")
