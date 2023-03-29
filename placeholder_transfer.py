@@ -64,14 +64,6 @@ def transferdata():
                         },
                         {
                             "field": {
-                                "fixed_field": "MEDIA_SPACES_NAMES",
-                                "group": "SEARCH_FILES"
-                            },
-                            "match": "EQUAL_TO",
-                            "search": "Progress Ingest",
-                        },
-                        {
-                            "field": {
                                 "custom_field": "field_50",
                                 "fixed_field": "CUSTOM_field_50",
                                 "group": "SEARCH_ASSETS"
@@ -99,7 +91,7 @@ def transferdata():
             clipdata = FlowMetadata.getClipData(psearch[0]["clip_id"])
             #grab metadata and clipname
             
-            metadata = clipdata.asset["custom"]
+            metadata = clipdata["asset"]["custom"]
             try:
                del metadata["field_58"]
             except:
@@ -145,7 +137,7 @@ def transferdata():
             except:
                 pass     
             #get Placeholder clipname ("new" clipname) to rename the Asset
-            placeholdername = clipdata.display_name
+            placeholdername = clipdata["display_name"]
             functions.cprint("Grabbing metadata...", "yellow")
             #block for search request: Mediaspace: Progress Einspiel 2020, 001 Identifier == id
             data = {
@@ -179,15 +171,15 @@ def transferdata():
                 #EditShareAPI call: return Clipdata
                 clipdata = FlowMetadata.getClipData(clipid)
                 #get assetid, needed for update Metadata & Metadatafield entry
-                assetid = clipdata.asset["asset_id"]
-                identifier = clipdata.asset["custom"]["field_50"]
+                assetid = clipdata["asset"]["asset_id"]
+                identifier = clipdata["asset"]["custom"]["field_50"]
                 #get captureid, uuid for metadatafield entry
-                captureid = clipdata.capture["capture_id"]
-                uuid = clipdata.asset['uuid']
+                captureid = clipdata["capture"]["capture_id"]
+                uuid = clipdata["asset"]['uuid']
                 #get "old" display_name for namechange msg
-                oldclipname = clipdata.display_name
+                oldclipname = clipdata["display_name"]
                 #get metadata_id for namechange api call
-                metadataid = clipdata.metadata["metadata_id"]
+                metadataid = clipdata["metadata"]["metadata_id"]
                 functions.cprint("Copy metadata to "+oldclipname+"...", "yellow")
                 #create dictionary for updating assets metadata
                 data = dict()
